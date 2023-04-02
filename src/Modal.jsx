@@ -1,25 +1,8 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
-function App() {
-  const [veri, setVeri] = useState("");
-  const [tarih, setTarih] = useState("");
+import React, { useContext } from "react";
+import { Context } from "./Context";
 
-  useEffect(() => {
-    const fetchData = async  () => {
-      await axios
-      .get(
-        "https://raw.githubusercontent.com/ozanerturk/covid19-turkey-api/master/dataset/timeline.json"
-      )
-      .then((res) => {
-        setVeri(res.data[tarih]);
-        console.log("oldu")
-      })
-      .catch((err) => {
-        console.log(err);
-      })
-    }
-    fetchData();
-  }, [veri, tarih]);
+const Modal = () => {
+  const { veri, setTarih } = useContext(Context);
 
   return (
     <div className="App">
@@ -67,6 +50,6 @@ function App() {
       </div>
     </div>
   );
-}
+};
 
-export default App;
+export default Modal;
